@@ -9,7 +9,7 @@ const {
 
 // 🔑 PUT YOUR DATA HERE
 const TOKEN = process.env.TOKEN;
-const CLIENT_ID = "1485933888936083516";
+const CLIENT_ID = "1480570358192013443";
 
 // 🧠 Temporary warn storage
 const warns = new Map();
@@ -175,28 +175,28 @@ client.on("interactionCreate", async i => {
   try {
     if (i.commandName === "kick") {
       await target.kick();
-      return i.reply(`👢 Kicked ${user.tag}`);
+      return i.reply(` ${user.tag} is out of the TIC community`);
     }
 
     if (i.commandName === "ban") {
       await target.ban();
-      return i.reply(`🔨 Banned ${user.tag}`);
+      return i.reply(`you just banned ${user.tag} are you crazy?`);
     }
 
     if (i.commandName === "unban") {
       await i.guild.members.unban(i.options.getString("id"));
-      return i.reply("✅ User unbanned");
+      return i.reply("User unbanned");
     }
 
     if (i.commandName === "timeout") {
       const mins = i.options.getInteger("minutes");
       await target.timeout(mins * 60 * 1000);
-      return i.reply(`⏳ Timed out ${user.tag} for ${mins} minutes`);
+      return i.reply(`${user.tag} sir timed out for ${mins} minutes`);
     }
 
     if (i.commandName === "remove_timeout") {
       await target.timeout(null);
-      return i.reply(`✅ Timeout removed for ${user.tag}`);
+      return i.reply(`Timeout removed for ${user.tag}`);
     }
 
     if (i.commandName === "warn") {
@@ -216,13 +216,13 @@ client.on("interactionCreate", async i => {
       const amount = i.options.getInteger("amount");
       await i.channel.bulkDelete(amount, true);
       return i.reply({
-        content: `🧹 Deleted ${amount} messages`,
+        content: `Deleted ${amount} messages`,
         ephemeral: true,
       });
     }
   } catch (err) {
     console.error(err);
-    i.reply("⚠️ Failed — check bot permissions & role position");
+    i.reply(`⚠︎ Failed — check bot permissions & role position`);
   }
 });
 // ================= CUSTOM AUTO REPLIES (DISPLAY NAME) =================
@@ -237,6 +237,7 @@ client.on("messageCreate", async message => {
     : message.author.displayName;
 
   const replies = {
+    "neb": `you are the only neb here!! ${name}!`,
     "hello": `👋 Hello ${name}!`,
     "hi": `✨ Hi ${name}!`,
     "hey": `😎 Hey ${name}!`,
